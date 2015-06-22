@@ -5,8 +5,7 @@ OLDVERSIONFILE="/etc/asterisk/freepbxdistro-version"
 NEWVERSIONFILE="/etc/schmooze/pbx-version"
 UPGRADESDIR="/var/tmp/freepbx-upgrades"
 
-if [ -f $NEWVERSIONFILE ] # Check if the "new-style" version file exists
-then
+if [ -f $NEWVERSIONFILE ]; then
 	# run new (>2.x) version checks and upgrade appropriately
 	CURRENTVERSION=`cat $NEWVERSIONFILE`
 	echo "Detected NEW version $CURRENTVERSION"
@@ -46,8 +45,7 @@ then
 			;;
 		"4.211.64-1")
 			NEWVERSION="4.211.64-2"
-			if [ -f "/etc/profile.rpmnew" ]
-			then
+			if [ -f "/etc/profile.rpmnew" ]; then
 				mv --force /etc/profile.rpmnew /etc/profile
 				mv --force /etc/dahdi/modules.rpmnew /etc/dahdi/modules
 				mv --force /etc/httpd/conf.d/freepbx.conf.rpmorig /etc/httpd/conf.d/freepbx.conf
@@ -83,8 +81,7 @@ then
 			;;             
 		"5.211.65-1")
 			NEWVERSION="5.211.65-2"
-			if [ -f "/etc/jail.local.rpmnew" ]
-			then
+			if [ -f "/etc/jail.local.rpmnew" ]; then
 				rm /etc/fail2ban/jail.local.rpmnew
 				rm /etc/prosody/prosody.cfg.lua.rpmnew
 				mv /etc/dahdi/modules.rpmnew /etc/dahdi/modules
@@ -101,8 +98,7 @@ then
 			;;             
 		"5.211.65-4")
 			NEWVERSION="5.211.65-5"
-			if [ -f "/etc/ntp.conf.rpmsave" ]
-			then
+			if [ -f "/etc/ntp.conf.rpmsave" ]; then
 				rm /etc/ntp.conf.rpmsave
 			fi	
 			;;             
@@ -141,8 +137,7 @@ then
 			;;
 		"5.211.65-16")
 			NEWVERSION="5.211.65-17"
-			if [ -f "/etc/fail2ban/jail.local.rpmnew" ]
-			then
+			if [ -f "/etc/fail2ban/jail.local.rpmnew" ]; then
 				rm /etc/fail2ban/jail.local.rpmnew
 				rm /etc/httpd/conf.d/freepbx.conf.rpmsave
 				rm /var/log/mysql/mysql.log
@@ -156,8 +151,7 @@ then
 			;;
 		"5.211.65-19")
 			NEWVERSION="5.211.65-20"
-			if [ -f "/etc/dahdi/modules.rpmnew" ]
-			then
+			if [ -f "/etc/dahdi/modules.rpmnew" ]; then
 				mv /etc/dahdi/modules.rpmnew /etc/dahdi/modules
 			fi	
 			;;		
@@ -200,8 +194,7 @@ then
 	echo "Started  :$NOW ###"
 	echo "Finished :$RIGHTNOW ###"
 
-elif [ -f $OLDVERSIONFILE ]
-then # run old (<2.x) version checks and upgrade appropriately
+elif [ -f $OLDVERSIONFILE ]; then # run old (<2.x) version checks and upgrade appropriately
 	CURRENTVERSION=`cat $OLDVERSIONFILE`
 	echo "Detected version $CURRENTVERSION"
 	case "$CURRENTVERSION" in
